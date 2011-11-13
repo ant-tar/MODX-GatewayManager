@@ -13,7 +13,7 @@ set_time_limit(0);
 
 define('PKG_NAME', 'GatewayManager');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
-define('PKG_VERSION', '1.0.0');
+define('PKG_VERSION', '1.0.1');
 define('PKG_RELEASE', 'pl');
 
 /* override with your own defines here (see build.config.sample.php) */
@@ -79,6 +79,9 @@ $vehicle->resolve('file',array(
 $vehicle->resolve('file',array(
 	'source' => $sources['source_assets'],
 	'target' => "return MODX_ASSETS_PATH . 'components/';",
+));
+$vehicle->resolve('php', array(
+    'source' => $sources['resolvers'] . 'plugins.resolve.php',
 ));
 
 $builder->putVehicle($vehicle);
