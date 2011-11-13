@@ -1,0 +1,6 @@
+﻿Changelog for GatewayManager.
+
+GatewayManager 1.0.0-pl (November 13th, 2011)
+====================================
+- Initial project
+- Initial changelog started

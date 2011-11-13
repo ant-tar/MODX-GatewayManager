@@ -5,7 +5,7 @@ Version: 1.0.0-pl
 Since: November 13th, 2011
 Author: Bert Oost <bertoost85@gmail.com> at OostDesign.nl
 
-With the GatewayManager you're able to make your domains available
+With the GatewayManager you're able to make your contexts available
 for certain context inside your MODX installation. You even can
 link a resource as new startpage and the GatewayManager provides a
 placeholder with the original URL (useful for canonical tags)
