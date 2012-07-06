@@ -1,0 +1,1 @@
+<div id="gatewaymanager-panel-index-div"></div>

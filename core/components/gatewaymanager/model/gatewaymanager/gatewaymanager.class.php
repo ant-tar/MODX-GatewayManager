@@ -31,6 +31,7 @@ class GatewayManager
 			'modelPath' => $basePath.'model/',
 			'processorsPath' => $basePath.'processors/',
 			'chunksPath' => $basePath.'elements/chunks/',
+			'templatesPath' => $basePath.'templates/',
 			'hooksPath' => $basePath.'hooks/',
 			'assetsPath' => $assetsPath,
 			'ordersPath' => $assetsPath.'orders/',

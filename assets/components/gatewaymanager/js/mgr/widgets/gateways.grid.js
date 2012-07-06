@@ -5,7 +5,7 @@ GatewayManager.grid.Gateways = function(config) {
         id: 'gatewaymanager-grid-statuses',
 		url: GatewayManager.config.connector_url,
 		baseParams: { action: 'mgr/gateways/getList' },
-		save_action: 'mgr/tracks/updateFromGrid',
+		save_action: 'mgr/gateways/updateFromGrid',
 		autosave: true,
 		
 		fields: ['id','domain','context','sitestart','startpage','active'],
@@ -17,7 +17,7 @@ GatewayManager.grid.Gateways = function(config) {
 			header: _('gatewaymanager.domain'),
 			dataIndex: 'domain',
 			sortable: true,
-			editor: { xtype: 'textfield' }
+			editor: { xtype: 'textfield', allowBlank: false }
 		},{
 			header: _('gatewaymanager.context'),
 			dataIndex: 'context',
@@ -25,9 +25,10 @@ GatewayManager.grid.Gateways = function(config) {
 			editor: { xtype: 'gatewaymanager-combo-contextlist' }
 		},{
 			header: _('gatewaymanager.startpage'),
-			dataIndex: 'startpage',
+			dataIndex: 'sitestart',
 			sortable: true,
-			editor: { xtype: 'numberfield' }
+			renderer: this.renderResourceList.createDelegate(this,[this],true),
+			editor: { xtype: 'gatewaymanager-combo-resourceslist' }
 		},{
 			header: _('gatewaymanager.active'),
 			dataIndex: 'active',
@@ -56,7 +57,17 @@ GatewayManager.grid.Gateways = function(config) {
 					scope: this
 				}
 			}
-		}]
+		}],
+		listeners: {
+			'afterAutoSave': {
+				fn: function(response) {
+					if(response.success) {
+						this.refresh();
+					}
+				},
+				scope: this
+			}
+		}
     });
 
     GatewayManager.grid.Gateways.superclass.constructor.call(this, config);
@@ -75,6 +86,13 @@ Ext.extend(GatewayManager.grid.Gateways, MODx.grid.Grid, {
         var f = MODx.grid.Grid.prototype.rendYesNo;
         return f(v,md,rec,ri,ci,s,g);
     },
+	renderResourceList: function(v,md,rec,ri,ci,s,g) {
+		if(v.length == 0) {
+			return '<span style="color:#8A8A8A;"><i>' + _('gatewaymanager.startpage.default') + '</i></span>';
+		}
+		var r = s.getAt(ri).data;
+		return r.startpage + ' (' + _('gatewaymanager.startpage.id') + ': ' + v + ')';
+	},
 	getMenu: function() {
 		var m = [{
 			text: _('gatewaymanager.remove'),

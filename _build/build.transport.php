@@ -13,7 +13,7 @@ set_time_limit(0);
 
 define('PKG_NAME', 'GatewayManager');
 define('PKG_NAME_LOWER', strtolower(PKG_NAME));
-define('PKG_VERSION', '1.0.2');
+define('PKG_VERSION', '1.1.0');
 define('PKG_RELEASE', 'pl');
 
 /* override with your own defines here (see build.config.sample.php) */

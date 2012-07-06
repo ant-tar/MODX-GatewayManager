@@ -1,12 +1,26 @@
 ﻿Changelog for GatewayManager.
 
+GatewayManager 1.1.0-pl (June 6th, 2012)
+====================================
+- Gateway plugin not working with MODX setting http_host, but with REQUEST_URI of the server
+- Updated processor files to new MODX 2.2.x object way of life
+- Added German translation thanks to Anselm Hannemann!
+- Added new feature "Create context settings" to create necessary settings for selected context
+    incl. new lexicons. Thanks to Viktor Matushevskyi for Russian translations!
+- Removed update gateway window, using inline editing now
+- MODX 2.2.x compatibility fixes
+- UI fixes for MODX 2.2.x
+
+
 GatewayManager 1.0.2-pl (November 13th, 2011)
 ====================================
 - Fixed creating tables at install
 
+
 GatewayManager 1.0.1-pl (November 13th, 2011)
 ====================================
 - Fix issue with relating plugin to OnHandleRequest
+
 
 GatewayManager 1.0.0-pl (November 13th, 2011)
 ====================================
