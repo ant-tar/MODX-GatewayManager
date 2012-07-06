@@ -20,9 +20,9 @@ class GatewayManager
 		
 		$namespace = $this->modx->getObject('modNamespace', 'gatewaymanager');
 		
-		$basePath = $namespace->get('path');
-		$assetsPath = $this->modx->getOption('assets_path').'components/gatewaymanager/';
-		$assetsUrl = $this->modx->getOption('assets_url').'components/gatewaymanager/';
+		$basePath = $this->modx->getOption('gatewaymanager.core_path', $config, $this->modx->getOption('core_path').'components/gatewaymanager/');
+		$assetsPath = $this->modx->getOption('gatewaymanager.assets_path', $config, $this->modx->getOption('assets_path').'components/gatewaymanager/');
+        $assetsUrl = $this->modx->getOption('gatewaymanager.assets_url', $config, $this->modx->getOption('assets_url').'components/gatewaymanager/');
 		
 		$this->config = array_merge(array(
 			'auth' => $this->modx->site_id,

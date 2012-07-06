@@ -86,6 +86,9 @@ $vehicle->resolve('php', array(
 $vehicle->resolve('php', array(
     'source' => $sources['resolvers'] . 'plugins.resolve.php',
 ));
+$vehicle->resolve('php',array(
+    'source' => $sources['resolvers'] . 'resolve.dbchanges.php',
+));
 
 $builder->putVehicle($vehicle);
 

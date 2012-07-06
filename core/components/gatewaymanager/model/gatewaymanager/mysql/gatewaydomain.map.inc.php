@@ -1,12 +1,15 @@
 <?php
 $xpdo_meta_map['gatewayDomain']= array (
   'package' => 'gatewaymanager',
+  'version' => NULL,
   'table' => 'gateways',
+  'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
     'domain' => NULL,
     'context' => NULL,
-    'sitestart' => 0,
+    'sitestart' => NULL,
+    'active' => 1,
   ),
   'fieldMeta' => 
   array (
@@ -32,7 +35,13 @@ $xpdo_meta_map['gatewayDomain']= array (
       'precision' => '11',
       'phptype' => 'integer',
       'null' => true,
-      'default' => 0,
+    ),
+    'active' => 
+    array (
+      'dbtype' => 'int',
+      'precision' => '1',
+      'phptype' => 'boolean',
+      'default' => 1,
     ),
   ),
   'aggregates' => 
@@ -42,6 +51,14 @@ $xpdo_meta_map['gatewayDomain']= array (
       'class' => 'modContext',
       'local' => 'context',
       'foreign' => 'key',
+      'cardinality' => 'one',
+      'owner' => 'foreign',
+    ),
+    'Resource' => 
+    array (
+      'class' => 'modResource',
+      'local' => 'sitestart',
+      'foreign' => 'id',
       'cardinality' => 'one',
       'owner' => 'foreign',
     ),

@@ -20,7 +20,7 @@ $manager = $modx->getManager();
 $generator = $manager->getGenerator();
  
 if(!is_dir($sources['model'])) {
-	$modx->log(modX::LOG_LEVEL_ERROR,'Model directory not found!');
+	$modx->log(modX::LOG_LEVEL_ERROR,'Model directory not found ('.$sources['model'].')!');
 	die();
 }
 
@@ -33,5 +33,7 @@ $generator->parseSchema($sources['schema_file'], $sources['model']);
 
 $modx->addPackage(PKG_NAME_LOWER, $sources['model']);
 $manager->createObjectContainer('gatewayDomain');
+
+//$manager->addField('gatewayDomain', 'active', array('after' => 'sitestart'));
 
 ?>

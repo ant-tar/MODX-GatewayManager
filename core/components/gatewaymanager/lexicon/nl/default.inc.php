@@ -18,10 +18,12 @@ $_lang['gatewaymanager.search'] = "Zoeken...";
 $_lang['gatewaymanager.create'] = "Maak nieuwe gateway";
 $_lang['gatewaymanager.domain'] = "Domein";
 $_lang['gatewaymanager.context'] = "Context";
+$_lang['gatewaymanager.context.createsettings'] = "Maak nodige context instellingen aan";
+$_lang['gatewaymanager.context.createsettings.desc'] = "This will create the two context settings \"site_url\" and \"http_host\" for the selected context (when not already exists!).";
 $_lang['gatewaymanager.startpage'] = "Startpagina";
 $_lang['gatewaymanager.startpage.id'] = "ID";
 $_lang['gatewaymanager.startpage.default'] = "Standaard pagina";
-$_lang['gatewaymanager.update'] = "Update gateway";
+$_lang['gatewaymanager.active'] = "Actief";
 $_lang['gatewaymanager.remove'] = "Verwijder gateway";
 $_lang['gatewaymanager.remove_confirm'] = "Weet u zeker dat u deze gateway wilt verwijderen?";
 

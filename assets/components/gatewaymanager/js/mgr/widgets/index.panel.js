@@ -3,36 +3,23 @@ GatewayManager.panel.Index = function(config) {
     Ext.apply(config, {
         border: false,
 		baseCls: 'modx-formpanel',
+		cls: 'container',
+		defaults: { collapsible: false ,autoHeight: true },
 		items: [{
-				html: '<h2>'+_('gatewaymanager.manage')+'</h2>',
-				border: false,
-				cls: 'modx-page-header'
+			html: '<h2>'+_('gatewaymanager.manage')+'</h2>',
+			border: false,
+			cls: 'modx-page-header'
+		},{
+			defaults: { border: false, autoHeight: true },
+			items: [{
+				html: '<p>' + _('gatewaymanager.gateways.desc') + '</p>',
+				bodyCssClass: 'panel-desc'
 			},{
-				xtype: 'modx-tabs',
-				bodyStyle: 'padding: 10px',
-				defaults: { border: false, autoHeight: true },
-				border: true,
-				stateful: true,
-				stateId: 'gatewaymanager-orders-tabpanel',
-				stateEvents: ['tabchange'],
-				getState: function() {
-					return { activeTab:this.items.indexOf(this.getActiveTab()) };
-				},
-				items: [{
-					title: _('gatewaymanager.gateways'),
-					defaults: { autoHeight: true },
-					items: [
-						{
-							html: '<p>'+_('gatewaymanager.gateways.desc')+'</p><br />',
-							border: false
-						},{
-							xtype: 'gatewaymanager-grid-gateways',
-							preventRender: true
-						}
-					]
-				}]
-			}
-		]
+				xtype: 'gatewaymanager-grid-gateways',
+				preventRender: true,
+				cls: 'main-wrapper'
+			}]
+		}]
     });
 
     GatewayManager.panel.Index.superclass.constructor.call(this, config);

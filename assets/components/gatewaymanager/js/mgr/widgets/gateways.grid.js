@@ -4,50 +4,59 @@ GatewayManager.grid.Gateways = function(config) {
     Ext.applyIf(config, {
         id: 'gatewaymanager-grid-statuses',
 		url: GatewayManager.config.connector_url,
-		baseParams: { action: 'mgr/gateways/getlist' },
-		fields: ['id','domain','context','sitestart','startpage','menu'],
+		baseParams: { action: 'mgr/gateways/getList' },
+		save_action: 'mgr/tracks/updateFromGrid',
+		autosave: true,
+		
+		fields: ['id','domain','context','sitestart','startpage','active'],
 		paging: true,
 		remoteSort: true,
 		anchor: '97%',
 		autoExpandColumn: 'domain',
 		columns: [{
-				header: _('gatewaymanager.domain'),
-				dataIndex: 'domain',
-				sortable: true
-			},{
-				header: _('gatewaymanager.context'),
-				dataIndex: 'context',
-				sortable: true
-			},{
-				header: _('gatewaymanager.startpage'),
-				dataIndex: 'startpage',
-				sortable: true
-			}
-		],
+			header: _('gatewaymanager.domain'),
+			dataIndex: 'domain',
+			sortable: true,
+			editor: { xtype: 'textfield' }
+		},{
+			header: _('gatewaymanager.context'),
+			dataIndex: 'context',
+			sortable: true,
+			editor: { xtype: 'gatewaymanager-combo-contextlist' }
+		},{
+			header: _('gatewaymanager.startpage'),
+			dataIndex: 'startpage',
+			sortable: true,
+			editor: { xtype: 'numberfield' }
+		},{
+			header: _('gatewaymanager.active'),
+			dataIndex: 'active',
+			sortable: true,
+			width: 40,
+			renderer: this.renderYNfield.createDelegate(this,[this],true),
+			editor: { xtype: 'combo-boolean' }
+		}],
 		tbar: [{
-				text: _('gatewaymanager.create'),
-				handler: {
-					xtype: 'gatewaymanager-window-create',
-					blankValues: true
-				}
-			},{
-				xtype: 'tbfill'
-			},{
-				xtype: 'textfield',
-				id: 'gateways-search-filter',
-				emptyText: _('gatewaymanager.search'),
-				listeners: {
-					'change': { fn: this.search, scope:this },
-					'render': { fn: function(tf) {
-							tf.getEl().addKeyListener(Ext.EventObject.ENTER, function() {
-								this.search(tf);
-							}, this);
-						},
-						scope: this
-					}
+			text: _('gatewaymanager.create'),
+			handler: {
+				xtype: 'gatewaymanager-window-create',
+				blankValues: true
+			}
+		},'->',{
+			xtype: 'textfield',
+			id: 'gateways-search-filter',
+			emptyText: _('gatewaymanager.search'),
+			listeners: {
+				'change': { fn: this.search, scope:this },
+				'render': { fn: function(tf) {
+						tf.getEl().addKeyListener(Ext.EventObject.ENTER, function() {
+							this.search(tf);
+						}, this);
+					},
+					scope: this
 				}
 			}
-		]
+		}]
     });
 
     GatewayManager.grid.Gateways.superclass.constructor.call(this, config);
@@ -60,19 +69,18 @@ Ext.extend(GatewayManager.grid.Gateways, MODx.grid.Grid, {
         this.getBottomToolbar().changePage(1);
         this.refresh();
     },
-	updateGateway: function(btn, e) {
-		if(!this.updateGatewayWindow) {
-			this.updateGatewayWindow = MODx.load({
-				xtype: 'gatewaymanager-window-update',
-				record: this.menu.record,
-				listeners: {
-					'success': { fn: this.refresh, scope: this }
-				}
-			});
-		} else {
-			this.updateGatewayWindow.setValues(this.menu.record);
-		}
-		this.updateGatewayWindow.show(e.target);
+	renderYNfield: function(v,md,rec,ri,ci,s,g) {
+        var r = s.getAt(ri).data;
+        v = Ext.util.Format.htmlEncode(v);
+        var f = MODx.grid.Grid.prototype.rendYesNo;
+        return f(v,md,rec,ri,ci,s,g);
+    },
+	getMenu: function() {
+		var m = [{
+			text: _('gatewaymanager.remove'),
+			handler: this.removeGateway
+		}];
+		return m;
 	},
 	removeGateway: function(btn, e) {
 		MODx.msg.confirm({
@@ -102,32 +110,37 @@ GatewayManager.window.CreateGateway = function(config) {
 		baseParams: {
 			action: 'mgr/gateways/create'
 		},
+		modal: true,
+		width: 450,
 		fields: [{
 			xtype: 'textfield',
 			fieldLabel: _('gatewaymanager.domain'),
 			name: 'domain',
-			width: 300,
+			anchor: '100%',
 			allowBlank: false
 		},{
 			xtype: 'gatewaymanager-combo-contextlist',
 			id: 'gatewaymanager-contextlist',
 			fieldLabel: _('gatewaymanager.context'),
 			name: 'context',
-			width: 300,
+			anchor: '100%',
 			allowBlank: false,
 			listeners: {
-				'select': {
-					fn: this.onSelectContext,
-					scope: this
-				}
+				'select': { fn: this.onSelectContext, scope: this }
 			}
 		},{
 			xtype: 'gatewaymanager-combo-resourceslist',
 			id: 'gatewaymanager-resourcelist',
 			fieldLabel: _('gatewaymanager.startpage'),
 			name: 'sitestart',
-			width: 300,
+			anchor: '100%',
 			allowBlank: true
+		},{
+			xtype: 'xcheckbox',
+			hideLabel: true,
+			boxLabel: _('gatewaymanager.context.createsettings'),
+			description: _('gatewaymanager.context.createsettings.desc'),
+			name: 'create-context-settings'
 		}]
 	});
 	GatewayManager.window.CreateGateway.superclass.constructor.call(this,config);
@@ -136,68 +149,9 @@ Ext.extend(GatewayManager.window.CreateGateway, MODx.Window, {
 	onSelectContext: function(cb) {
 		var rl = Ext.getCmp('gatewaymanager-resourcelist');
 		var s = rl.getStore();
-        s.baseParams.cntx = cb.getValue();
-        s.load();
+			s.baseParams.cntx = cb.getValue();
+			s.load();
 		rl.clearValue();
 	}
 });
 Ext.reg('gatewaymanager-window-create', GatewayManager.window.CreateGateway);
-
-// ------------------
-// Update window
-GatewayManager.window.UpdateGateway = function(config) {
-	config = config || {};
-	Ext.applyIf(config,{
-		title: _('gatewaymanager.update'),
-		url: GatewayManager.config.connector_url,
-		baseParams: {
-			action: 'mgr/gateways/update'
-		},
-		fields: [{
-			xtype: 'textfield',
-			name: 'id',
-			hidden: true
-		},{
-			xtype: 'textfield',
-			fieldLabel: _('gatewaymanager.domain'),
-			name: 'domain',
-			width: 300,
-			allowBlank: false
-		},{
-			xtype: 'gatewaymanager-combo-contextlist',
-			id: 'gatewaymanager-contextlist-upd',
-			fieldLabel: _('gatewaymanager.context'),
-			name: 'context',
-			width: 300,
-			allowBlank: false,
-			listeners: {
-				'render': {
-					fn: this.onSelectContext,
-					scope: this
-				},
-				'select': {
-					fn: this.onSelectContext,
-					scope: this
-				}
-			}
-		},{
-			xtype: 'gatewaymanager-combo-resourceslist',
-			id: 'gatewaymanager-resourcelist-upd',
-			fieldLabel: _('gatewaymanager.startpage'),
-			name: 'sitestart',
-			width: 300,
-			allowBlank: true
-		}]
-	});
-	GatewayManager.window.UpdateGateway.superclass.constructor.call(this,config);
-};
-Ext.extend(GatewayManager.window.UpdateGateway, MODx.Window, {
-	onSelectContext: function(cb) {
-		var rl = Ext.getCmp('gatewaymanager-resourcelist-upd');
-		var s = rl.getStore();
-        s.baseParams.cntx = cb.getValue();
-        s.load();
-		rl.clearValue();
-	}
-});
-Ext.reg('gatewaymanager-window-update', GatewayManager.window.UpdateGateway);

@@ -20,7 +20,7 @@ GatewayManager.combo.ContextList = function(config) {
 			combo: true
         }
     });
-
+	
     GatewayManager.combo.ContextList.superclass.constructor.call(this, config);
 };
 
@@ -51,7 +51,7 @@ GatewayManager.combo.ResourcesList = function(config) {
 			combo: true
         }
     });
-
+	
     GatewayManager.combo.ResourcesList.superclass.constructor.call(this, config);
 };
 

@@ -18,10 +18,12 @@ $_lang['gatewaymanager.search'] = "Поиск...";
 $_lang['gatewaymanager.create'] = "Создайте новый гейтвей";
 $_lang['gatewaymanager.domain'] = "Домен";
 $_lang['gatewaymanager.context'] = "Контекст";
+$_lang['gatewaymanager.context.createsettings'] = "Создайте необходимые настройки контекста";
+$_lang['gatewaymanager.context.createsettings.desc'] = "Это создаст две настройки контекста \"site_url\" и \"http_host\" для выбраного контекста (если они еще не существуют!)";
 $_lang['gatewaymanager.startpage'] = "Начальная страница";
 $_lang['gatewaymanager.startpage.id'] = "ID";
 $_lang['gatewaymanager.startpage.default'] = "Страница по умолчанию";
-$_lang['gatewaymanager.update'] = "Обновить гейтвей";
+$_lang['gatewaymanager.active'] = "активный";
 $_lang['gatewaymanager.remove'] = "Удалить гейтвей";
 $_lang['gatewaymanager.remove_confirm'] = "Вы уверены, что хотите удалить этот гейтвей?";
 
