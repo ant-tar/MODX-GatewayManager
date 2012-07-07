@@ -20,7 +20,7 @@ if(empty($hostname)) {
 }
 
 // and find the GatewayManager record
-$domain = $modx->getObject('gatewayDomain', array('domain' => $hostname));
+$domain = $modx->getObject('gatewayDomain', array('domain' => $hostname, 'active' => true));
 
 if(!empty($domain) && is_object($domain) && $domain instanceof gatewayDomain) {
     

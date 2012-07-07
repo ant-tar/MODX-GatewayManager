@@ -37,7 +37,7 @@ unset($root);
 $modx= new modX();
 $modx->initialize('mgr');
 $modx->setLogLevel(modX::LOG_LEVEL_INFO);
-$modx->setLogTarget('ECHO');
+$modx->setLogTarget(XPDO_CLI_MODE ? 'ECHO' : 'HTML');
 
 $modx->loadClass('transport.modPackageBuilder','',false, true);
 $builder = new modPackageBuilder($modx);
@@ -87,7 +87,7 @@ $vehicle->resolve('php', array(
     'source' => $sources['resolvers'] . 'plugins.resolve.php',
 ));
 $vehicle->resolve('php',array(
-    'source' => $sources['resolvers'] . 'resolve.dbchanges.php',
+    'source' => $sources['resolvers'] . 'dbchanges.resolve.php',
 ));
 
 $builder->putVehicle($vehicle);
