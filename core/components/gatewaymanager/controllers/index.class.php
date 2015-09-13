@@ -21,3 +21,5 @@ class GatewayManagerIndexManagerController extends GatewayManagerController
         return $this->gatewaymanager->config['templatesPath'] . 'index.tpl';
     }
 }
+
+class ControllersIndexManagerController extends GatewayManagerIndexManagerController {}
