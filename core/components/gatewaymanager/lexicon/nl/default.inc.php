@@ -17,13 +17,17 @@ $_lang['gatewaymanager.search'] = "Zoeken...";
 
 $_lang['gatewaymanager.create'] = "Maak nieuwe gateway";
 $_lang['gatewaymanager.domain'] = "Domein";
+$_lang['gatewaymanager.domain_desc'] = "Enkel het domein invullen, als 'www.example.com'. Geen http:// of slashes en paden aan het eind invullen.";
 $_lang['gatewaymanager.context'] = "Context";
+$_lang['gatewaymanager.context_desc'] = "Selecteer de context waar dit domein naar toe moet leiden.";
 $_lang['gatewaymanager.context.createsettings'] = "Maak nodige context instellingen aan";
-$_lang['gatewaymanager.context.createsettings.desc'] = "This will create the two context settings \"site_url\", \"base_url\" and \"http_host\" for the selected context (when not already exists!).";
+$_lang['gatewaymanager.context.createsettings.desc'] = "Dit zal context instelling als \"site_url\" end \"http_host\" aanmaken voor de geselecteerde context (indien niet reeds aanwezig!).";
 $_lang['gatewaymanager.startpage'] = "Startpagina";
+$_lang['gatewaymanager.startpage_desc'] = "Het is enkel nodig een startpagina te selecteren wanneer deze niet al reeds je \"site_start\"  is. Bedoeld om bv. URL's aan (landings)pagin's binnen een context te koppelen.";
 $_lang['gatewaymanager.startpage.id'] = "ID";
 $_lang['gatewaymanager.startpage.default'] = "Standaard pagina";
 $_lang['gatewaymanager.active'] = "Actief";
+$_lang['gatewaymanager.update'] = "Update gateway";
 $_lang['gatewaymanager.remove'] = "Verwijder gateway";
 $_lang['gatewaymanager.remove_confirm'] = "Weet u zeker dat u deze gateway wilt verwijderen?";
 

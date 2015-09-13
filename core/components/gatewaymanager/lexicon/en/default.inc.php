@@ -17,13 +17,17 @@ $_lang['gatewaymanager.search'] = "Search...";
 
 $_lang['gatewaymanager.create'] = "Create new gateway";
 $_lang['gatewaymanager.domain'] = "Domain";
+$_lang['gatewaymanager.domain_desc'] = "The domain only contains 'www.example.com'. No http:// or any trailing slashes and additional paths here.";
 $_lang['gatewaymanager.context'] = "Context";
+$_lang['gatewaymanager.context_desc'] = "Select the context where to switch this domain too.";
 $_lang['gatewaymanager.context.createsettings'] = "Create necessary context settings";
-$_lang['gatewaymanager.context.createsettings.desc'] = "This will create the two context settings \"site_url\", \"base_url\" and \"http_host\" for the selected context (when not already exists!).";
-$_lang['gatewaymanager.startpage'] = "Startpage";
+$_lang['gatewaymanager.context.createsettings.desc'] = "This will create the context settings like \"site_url\" and \"http_host\" for the selected context (when not already exists!).";
+$_lang['gatewaymanager.startpage'] = "Start page";
+$_lang['gatewaymanager.startpage_desc'] = "It's only necessary to select a start page when this is not your context \"site_start\". Meant to bind domains to (landing) pages for example.";
 $_lang['gatewaymanager.startpage.id'] = "ID";
 $_lang['gatewaymanager.startpage.default'] = "Default page";
 $_lang['gatewaymanager.active'] = "Active";
+$_lang['gatewaymanager.update'] = "Update gateway";
 $_lang['gatewaymanager.remove'] = "Remove gateway";
 $_lang['gatewaymanager.remove_confirm'] = "Are you sure you want to remove this gateway?";
 

@@ -24,6 +24,7 @@ $_lang['gatewaymanager.startpage'] = "Startseite";
 $_lang['gatewaymanager.startpage.id'] = "ID";
 $_lang['gatewaymanager.startpage.default'] = "Standardseite";
 $_lang['gatewaymanager.active'] = "Aktiv";
+$_lang['gatewaymanager.update'] = "Update gateway";
 $_lang['gatewaymanager.remove'] = "Gateway entfernen";
 $_lang['gatewaymanager.remove_confirm'] = "Sind Sie sich sicher, dass Sie diesen Gateway entfernen möchten?";
 

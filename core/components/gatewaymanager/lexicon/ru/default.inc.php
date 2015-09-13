@@ -24,6 +24,7 @@ $_lang['gatewaymanager.startpage'] = "Начальная страница";
 $_lang['gatewaymanager.startpage.id'] = "ID";
 $_lang['gatewaymanager.startpage.default'] = "Страница по умолчанию";
 $_lang['gatewaymanager.active'] = "активный";
+$_lang['gatewaymanager.update'] = "Update gateway";
 $_lang['gatewaymanager.remove'] = "Удалить гейтвей";
 $_lang['gatewaymanager.remove_confirm'] = "Вы уверены, что хотите удалить этот гейтвей?";
 

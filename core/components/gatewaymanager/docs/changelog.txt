@@ -2,6 +2,7 @@
 
 GatewayManager 1.2.0-pl (September 13th, 2015)
 ====================================
+- Improved create window with descriptions per field and removed inline editing for context and start page (since some field listeners are required)
 - Fixed: [#13] Different start_site definitions in the context and gateway brakes the website
 - Added new feature to create the first Resource when not exists (when creating settings is enabled)
 - Updated creating new gateway entries to create context settings correctly
