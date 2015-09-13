@@ -21,5 +21,3 @@ $plugins[1]->fromArray(array(
 ),'',true,true);
 
 return $plugins;
-
-?>

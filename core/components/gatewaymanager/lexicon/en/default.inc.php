@@ -27,11 +27,14 @@ $_lang['gatewaymanager.active'] = "Active";
 $_lang['gatewaymanager.remove'] = "Remove gateway";
 $_lang['gatewaymanager.remove_confirm'] = "Are you sure you want to remove this gateway?";
 
-$_lang['gatewaymanager.error.domain_ns'] = "Domainname not specified. Please enter a domain!";
-$_lang['gatewaymanager.error.domain_ae'] = "Domain already exists. Please try an other domainname!";
+$_lang['gatewaymanager.error.domain_ns'] = "Domain name not specified. Please enter a domain!";
+$_lang['gatewaymanager.error.domain_ae'] = "Domain already exists. Please try an other domain name!";
+$_lang['gatewaymanager.error.context_ns'] = "Context not specified. Please choose a context!";
+$_lang['gatewaymanager.error.context_ne'] = "Context not exists. Please choose one from the list!";
+$_lang['gatewaymanager.error.context_no_resources'] = "Context does not have any resources. Please add one, or check \"create necessary context settings\" to auto-generate the first resource.";
+$_lang['gatewaymanager.error.context_rne'] = "Given start page does not exists in given context. Please choose a resource that belongs to the chosen context.";
+
 $_lang['gatewaymanager.error.save'] = "Failed to save the gateway. Refresh and try it again!";
 $_lang['gatewaymanager.error.id_ns'] = "Domain ID not specified. Please try it again!";
 $_lang['gatewaymanager.error.nf'] = "Domain not found. Refresh and try it again!";
 $_lang['gatewaymanager.error.remove'] = "Domain cannot be removed. Refresh and try it again!";
-
-?>

@@ -8,12 +8,12 @@ GatewayManager.page.Index = function(config) {
 
 	Ext.applyIf(config,{
 		buttons: {
-			text: _('help_ex'),
-			handler: MODx.loadHelpPane
-		},
-		components: [{
-			xtype: 'gatewaymanager-panel-index',
-			renderTo: 'gatewaymanager-panel-index-div'
+			text: _('help_ex')
+			,handler: MODx.loadHelpPane
+		}
+		,components: [{
+			xtype: 'gatewaymanager-panel-index'
+			,renderTo: 'gatewaymanager-panel-index-div'
 		}]
 	});
 

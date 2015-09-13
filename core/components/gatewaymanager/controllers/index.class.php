@@ -1,35 +1,23 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/model/gatewaymanager/gatewaymanager.class.php';
+require_once dirname(__FILE__) . '/base.class.php';
 
-abstract class GatewayManagerController extends modExtraManagerController
+class GatewayManagerIndexManagerController extends GatewayManagerController
 {
-	/** @var GatewayManager $gatewaymanager */
-	public $gatewaymanager;
-	public function initialize() {
-		$this->gatewaymanager = new GatewayManager($this->modx);
-		
-		$this->addJavascript($this->gatewaymanager->config['jsUrl'].'mgr/gatewaymanager.js');
-		$this->addHtml('<script type="text/javascript">
-		Ext.onReady(function() {
-			GatewayManager.config = '.$this->modx->toJSON($this->gatewaymanager->config).';
-			GatewayManager.config.connector_url = "'.$this->gatewaymanager->config['connectorUrl'].'";
-			GatewayManager.request = '.$this->modx->toJSON($_GET).';
-		});
-		</script>');
-		return parent::initialize();
-	}
-	
-	public function getLanguageTopics() {
-		return array('gatewaymanager:default');
-	}
-	
-	public function checkPermissions() { return true;}
-}
+    public function getPageTitle()
+    {
+        return $this->modx->lexicon('gatewaymanager');
+    }
 
-class ControllersIndexManagerController extends GatewayManagerController
-{
-	public static function getDefaultController() { return 'home'; }
-}
+    public function loadCustomCssJs()
+    {
+        $this->addJavascript($this->gatewaymanager->config['jsUrl'] . 'mgr/widgets/gateways.grid.js');
+        $this->addJavascript($this->gatewaymanager->config['jsUrl'] . 'mgr/widgets/index.panel.js');
+        $this->addLastJavascript($this->gatewaymanager->config['jsUrl'] . 'mgr/sections/index.js');
+    }
 
-?>
+    public function getTemplateFile()
+    {
+        return $this->gatewaymanager->config['templatesPath'] . 'index.tpl';
+    }
+}

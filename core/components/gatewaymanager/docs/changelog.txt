@@ -1,5 +1,14 @@
 ﻿Changelog for GatewayManager.
 
+GatewayManager 1.2.0-pl (September 13th, 2015)
+====================================
+-
+- Added new feature to create the first Resource when not exists (when creating settings is enabled)
+- Updated creating new gateway entries to create context settings correctly
+- Updated UI to be more compatible with MODX 2.3+
+- Improved creation validation of given settings (context, start page etc.)
+
+
 GatewayManager 1.1.0-pl (June 6th, 2012)
 ====================================
 - Gateway plugin not working with MODX setting http_host, but with REQUEST_URI of the server

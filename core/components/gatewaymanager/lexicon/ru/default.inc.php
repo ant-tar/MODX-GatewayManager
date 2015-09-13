@@ -29,9 +29,12 @@ $_lang['gatewaymanager.remove_confirm'] = "Вы уверены, что хоти�
 
 $_lang['gatewaymanager.error.domain_ns'] = "Имя домена не определено. Пожалуйста, введите имя домена!";
 $_lang['gatewaymanager.error.domain_ae'] = "Домен уже существует. Попробуйте другое доменное имя!";
+$_lang['gatewaymanager.error.context_ns'] = "Context not specified. Please choose a context!";
+$_lang['gatewaymanager.error.context_ne'] = "Context not exists. Please choose one from the list!";
+$_lang['gatewaymanager.error.context_no_resources'] = "Context does not have any resources. Please add one, or check \"create necessary context settings\" to auto-generate the first resource.";
+$_lang['gatewaymanager.error.context_rne'] = "Given start page does not exists in given context. Please choose a resource that belongs to the chosen context.";
+
 $_lang['gatewaymanager.error.save'] = "Попытка сохранить гейтвей не удалась. Обновите и попробуйте снова!";
 $_lang['gatewaymanager.error.id_ns'] = "ID домена не определён. Пожалуйста, попробуйте снова!";
 $_lang['gatewaymanager.error.nf'] = "Домен не найден. Обновите и попытайтесь снова!";
 $_lang['gatewaymanager.error.remove'] = "Попытка удалить домен не удалась. Обновите и попробуйте снова!";
-
-?>

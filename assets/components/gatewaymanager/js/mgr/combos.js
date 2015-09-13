@@ -4,20 +4,20 @@
 GatewayManager.combo.ContextList = function(config) {
     config = config || {};
     Ext.applyIf(config, {
-        name: 'context',
-		hiddenName: 'context',
-		displayField: 'key',
-		valueField: 'key',
-		fields: ['key'],
-		forceSelection: true,
-		typeAhead: true,
-		editable: true,
-		allowBlank: false,
-		autocomplete: true,
-		url: GatewayManager.config.connector_url,
-		baseParams: {
-            action: 'mgr/contexts/getList',
-			combo: true
+        name: 'context'
+		,hiddenName: 'context'
+		,displayField: 'key'
+		,valueField: 'key'
+		,fields: ['key']
+		,forceSelection: true
+		,typeAhead: true
+		,editable: true
+		,allowBlank: false
+		,autocomplete: true
+		,url: GatewayManager.config.connectorUrl
+		,baseParams: {
+            action: 'mgr/contexts/getList'
+			,combo: true
         }
     });
 	
@@ -33,21 +33,21 @@ Ext.reg('gatewaymanager-combo-contextlist', GatewayManager.combo.ContextList);
 GatewayManager.combo.ResourcesList = function(config) {
     config = config || {};
     Ext.applyIf(config, {
-        name: 'sitestart',
-		hiddenName: 'sitestart',
-		displayField: 'pagetitle',
-		valueField: 'id',
-		fields: ['id','pagetitle'],
-		forceSelection: true,
-		typeAhead: true,
-		editable: true,
-		allowBlank: true,
-		autocomplete: true,
-		queryParam: 'query',
-		url: GatewayManager.config.connector_url,
-		baseParams: {
-            action: 'mgr/resources/getList',
-			combo: true
+        name: 'sitestart'
+        ,hiddenName: 'sitestart'
+        ,displayField: 'pagetitle'
+        ,valueField: 'id'
+        ,fields: ['id','pagetitle']
+        ,forceSelection: true
+        ,typeAhead: true
+        ,editable: true
+        ,allowBlank: true
+        ,autocomplete: true
+        ,queryParam: 'query'
+        ,url: GatewayManager.config.connectorUrl
+        ,baseParams: {
+            action: 'mgr/resources/getList'
+            ,combo: true
         }
     });
 	

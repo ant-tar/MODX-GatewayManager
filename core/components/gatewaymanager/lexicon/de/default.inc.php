@@ -29,9 +29,12 @@ $_lang['gatewaymanager.remove_confirm'] = "Sind Sie sich sicher, dass Sie diesen
 
 $_lang['gatewaymanager.error.domain_ns'] = "Domainname nicht spezifiziert. Bitte geben Sie einen Domainnamen an!";
 $_lang['gatewaymanager.error.domain_ae'] = "Domain ist bereits angelegt. Bitte verwenden Sie einen anderen Domainnamen!";
+$_lang['gatewaymanager.error.context_ns'] = "Context not specified. Please choose a context!";
+$_lang['gatewaymanager.error.context_ne'] = "Context not exists. Please choose one from the list!";
+$_lang['gatewaymanager.error.context_no_resources'] = "Context does not have any resources. Please add one, or check \"create necessary context settings\" to auto-generate the first resource.";
+$_lang['gatewaymanager.error.context_rne'] = "Given start page does not exists in given context. Please choose a resource that belongs to the chosen context.";
+
 $_lang['gatewaymanager.error.save'] = "Speichern des Gateway fehlgeschlagen. Laden Sie die Seite neu und versuchen Sie es erneut!";
 $_lang['gatewaymanager.error.id_ns'] = "Domain ID nicht angegeben. Bitte versuchen Sie es erneut!";
 $_lang['gatewaymanager.error.nf'] = "Domain nicht gefunden. Laden Sie die Seite neu und versuchen Sie es erneut!";
 $_lang['gatewaymanager.error.remove'] = "Domain konnte nicht entfernt werden. Laden Sie die Seite neu und versuchen Sie es erneut!";
-
-?>

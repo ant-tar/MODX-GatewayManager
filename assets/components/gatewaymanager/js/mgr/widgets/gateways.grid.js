@@ -2,54 +2,55 @@ GatewayManager.grid.Gateways = function(config) {
     config = config || {};
 
     Ext.applyIf(config, {
-        id: 'gatewaymanager-grid-statuses',
-		url: GatewayManager.config.connector_url,
-		baseParams: { action: 'mgr/gateways/getList' },
-		save_action: 'mgr/gateways/updateFromGrid',
-		autosave: true,
-		
-		fields: ['id','domain','context','sitestart','startpage','active'],
-		paging: true,
-		remoteSort: true,
-		anchor: '97%',
-		autoExpandColumn: 'domain',
-		columns: [{
-			header: _('gatewaymanager.domain'),
-			dataIndex: 'domain',
-			sortable: true,
-			editor: { xtype: 'textfield', allowBlank: false }
+        id: 'gatewaymanager-grid-statuses'
+		,url: GatewayManager.config.connectorUrl
+		,baseParams: { action: 'mgr/gateways/getList' }
+		,save_action: 'mgr/gateways/updateFromGrid'
+		,autosave: true
+
+		,fields: ['id','domain','context','sitestart','startpage','active']
+		,paging: true
+		,remoteSort: true
+		,anchor: '97%'
+		,autoExpandColumn: 'domain'
+		,columns: [{
+			header: _('gatewaymanager.domain')
+			,dataIndex: 'domain'
+			,sortable: true
+			,editor: { xtype: 'textfield', allowBlank: false }
 		},{
-			header: _('gatewaymanager.context'),
-			dataIndex: 'context',
-			sortable: true,
-			editor: { xtype: 'gatewaymanager-combo-contextlist' }
+			header: _('gatewaymanager.context')
+			,dataIndex: 'context'
+			,sortable: true
+			,editor: { xtype: 'gatewaymanager-combo-contextlist' }
 		},{
-			header: _('gatewaymanager.startpage'),
-			dataIndex: 'sitestart',
-			sortable: true,
-			renderer: this.renderResourceList.createDelegate(this,[this],true),
-			editor: { xtype: 'gatewaymanager-combo-resourceslist' }
+			header: _('gatewaymanager.startpage')
+			,dataIndex: 'sitestart'
+			,sortable: true
+			,renderer: this.renderResourceList.createDelegate(this,[this],true)
+			,editor: { xtype: 'gatewaymanager-combo-resourceslist' }
 		},{
-			header: _('gatewaymanager.active'),
-			dataIndex: 'active',
-			sortable: true,
-			width: 40,
-			renderer: this.renderYNfield.createDelegate(this,[this],true),
-			editor: { xtype: 'combo-boolean' }
-		}],
-		tbar: [{
-			text: _('gatewaymanager.create'),
-			handler: {
-				xtype: 'gatewaymanager-window-create',
-				blankValues: true
+			header: _('gatewaymanager.active')
+			,dataIndex: 'active'
+			,sortable: true
+			,width: 40
+			,renderer: this.renderYNfield.createDelegate(this,[this],true)
+			,editor: { xtype: 'combo-boolean' }
+		}]
+        ,tbar: [{
+			text: _('gatewaymanager.create')
+            ,cls: 'primary-button'
+            ,handler: {
+				xtype: 'gatewaymanager-window-create'
+                ,blankValues: true
 			}
 		},'->',{
-			xtype: 'textfield',
-			id: 'gateways-search-filter',
-			emptyText: _('gatewaymanager.search'),
-			listeners: {
-				'change': { fn: this.search, scope:this },
-				'render': { fn: function(tf) {
+			xtype: 'textfield'
+            ,id: 'gateways-search-filter'
+            ,emptyText: _('gatewaymanager.search')
+            ,listeners: {
+				'change': { fn: this.search, scope:this }
+                ,'render': { fn: function(tf) {
 						tf.getEl().addKeyListener(Ext.EventObject.ENTER, function() {
 							this.search(tf);
 						}, this);
@@ -57,15 +58,15 @@ GatewayManager.grid.Gateways = function(config) {
 					scope: this
 				}
 			}
-		}],
-		listeners: {
+		}]
+        ,listeners: {
 			'afterAutoSave': {
 				fn: function(response) {
 					if(response.success) {
 						this.refresh();
 					}
-				},
-				scope: this
+				}
+                ,scope: this
 			}
 		}
     });
@@ -95,22 +96,22 @@ Ext.extend(GatewayManager.grid.Gateways, MODx.grid.Grid, {
 	},
 	getMenu: function() {
 		var m = [{
-			text: _('gatewaymanager.remove'),
-			handler: this.removeGateway
+			text: _('gatewaymanager.remove')
+            ,handler: this.removeGateway
 		}];
 		return m;
 	},
 	removeGateway: function(btn, e) {
 		MODx.msg.confirm({
-			title: _('gatewaymanager.remove', { title: this.menu.record.title }),
-			text: _('gatewaymanager.remove_confirm', { title: this.menu.record.title }),
-			url: this.config.url,
-			params: {
-				action: 'mgr/gateways/remove',
-				id: this.menu.record.id
-			},
-			listeners: {
-				'success': { fn:this.refresh, scope:this }
+			title: _('gatewaymanager.remove', { title: this.menu.record.title })
+            ,text: _('gatewaymanager.remove_confirm', { title: this.menu.record.title })
+            ,url: this.config.url
+            ,params: {
+				action: 'mgr/gateways/remove'
+                ,id: this.menu.record.id
+			}
+            ,listeners: {
+				'success': { fn: this.refresh ,scope: this }
 			}
 		});
 	}
@@ -123,42 +124,43 @@ Ext.reg('gatewaymanager-grid-gateways', GatewayManager.grid.Gateways);
 GatewayManager.window.CreateGateway = function(config) {
 	config = config || {};
 	Ext.applyIf(config,{
-		title: _('gatewaymanager.create'),
-		url: GatewayManager.config.connector_url,
-		baseParams: {
+		title: _('gatewaymanager.create')
+        ,url: GatewayManager.config.connectorUrl
+        ,baseParams: {
 			action: 'mgr/gateways/create'
-		},
-		modal: true,
-		width: 450,
-		fields: [{
-			xtype: 'textfield',
-			fieldLabel: _('gatewaymanager.domain'),
-			name: 'domain',
-			anchor: '100%',
-			allowBlank: false
+		}
+        ,modal: true
+        ,width: 450
+        ,autoHeight: true
+        ,fields: [{
+			xtype: 'textfield'
+            ,fieldLabel: _('gatewaymanager.domain')
+            ,name: 'domain'
+            ,anchor: '100%'
+            ,allowBlank: false
 		},{
-			xtype: 'gatewaymanager-combo-contextlist',
-			id: 'gatewaymanager-contextlist',
-			fieldLabel: _('gatewaymanager.context'),
-			name: 'context',
-			anchor: '100%',
-			allowBlank: false,
-			listeners: {
+			xtype: 'gatewaymanager-combo-contextlist'
+            ,id: 'gatewaymanager-contextlist'
+            ,fieldLabel: _('gatewaymanager.context')
+            ,name: 'context'
+            ,anchor: '100%'
+            ,allowBlank: false
+            ,listeners: {
 				'select': { fn: this.onSelectContext, scope: this }
 			}
 		},{
-			xtype: 'gatewaymanager-combo-resourceslist',
-			id: 'gatewaymanager-resourcelist',
-			fieldLabel: _('gatewaymanager.startpage'),
-			name: 'sitestart',
-			anchor: '100%',
-			allowBlank: true
+			xtype: 'gatewaymanager-combo-resourceslist'
+            ,id: 'gatewaymanager-resourcelist'
+            ,fieldLabel: _('gatewaymanager.startpage')
+            ,name: 'sitestart'
+            ,anchor: '100%'
+            ,allowBlank: true
 		},{
-			xtype: 'xcheckbox',
-			hideLabel: true,
-			boxLabel: _('gatewaymanager.context.createsettings'),
-			description: _('gatewaymanager.context.createsettings.desc'),
-			name: 'create-context-settings'
+			xtype: 'xcheckbox'
+            ,hideLabel: true
+            ,boxLabel: _('gatewaymanager.context.createsettings')
+            ,description: _('gatewaymanager.context.createsettings.desc')
+            ,name: 'create-context-settings'
 		}]
 	});
 	GatewayManager.window.CreateGateway.superclass.constructor.call(this,config);

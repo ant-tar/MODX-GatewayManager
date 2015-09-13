@@ -24,5 +24,3 @@ switch($options[xPDOTransport::PACKAGE_ACTION]) {
 		}
 	break;
 }
-
-?>

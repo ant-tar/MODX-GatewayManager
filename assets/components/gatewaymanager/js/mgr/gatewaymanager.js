@@ -9,4 +9,5 @@ Ext.extend(GatewayManager, Ext.Component,{
 
 Ext.reg('gatewaymanager', GatewayManager);
 GatewayManager = new GatewayManager();
+
 MODx.config.help_url = 'http://rtfm.modx.com/display/ADDON/GatewayManager';

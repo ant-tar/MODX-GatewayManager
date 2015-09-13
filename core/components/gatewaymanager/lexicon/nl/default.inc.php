@@ -29,9 +29,12 @@ $_lang['gatewaymanager.remove_confirm'] = "Weet u zeker dat u deze gateway wilt 
 
 $_lang['gatewaymanager.error.domain_ns'] = "Domeinnaam niet gespecificeerd. Vernieuw en probeer het nog eens!";
 $_lang['gatewaymanager.error.domain_ae'] = "Domein bestaat al. Probeer een andere domeinnaam!";
+$_lang['gatewaymanager.error.context_ns'] = "Context niet gespecificeerd. Kies een context uit de lijst!";
+$_lang['gatewaymanager.error.context_ne'] = "Context bestaat niet. Kies een context uit de lijst!";
+$_lang['gatewaymanager.error.context_no_resources'] = "Context bevat geen enkel document. Voeg eentje toe, of vink \"maak nodige context instelling aan\" aan, om het eerste document automatisch aan te maken.";
+$_lang['gatewaymanager.error.context_rne'] = "Opgegeven startpagina bestaat niet in de opgegeven context. Kies een resource welke behoort tot de gekozen context.";
+
 $_lang['gatewaymanager.error.save'] = "Mislukt de gateway op te slaan. Vernieuw en probeer het nog eens!";
 $_lang['gatewaymanager.error.id_ns'] = "Domein ID niet gespecificeerd. Probeer het nog eens!";
 $_lang['gatewaymanager.error.nf'] = "Domein niet gevonden. Vernieuw en probeer het nog eens!";
 $_lang['gatewaymanager.error.remove'] = "Domein kan niet verwijderd worden. Vernieuw en probeer het nog eens!";
-
-?>
