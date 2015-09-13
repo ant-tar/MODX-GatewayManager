@@ -53,21 +53,25 @@ if (!empty($domain) && is_object($domain) && $domain instanceof gatewayDomain) {
         $currContext = $domContext;
     }
 
-    // site start check
-    $currSiteStart = $currContext->getOption('site_start');
-    $siteStart = $domain->get('sitestart');
-    $sameSiteStart = ($currSiteStart == $siteStart || empty($siteStart)) ? true : false;
+    // site start check (only when trying to reach the homepage)
+    $urlPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    if ($urlPath == '/' || empty($urlPath)) {
 
-    if (!$sameSiteStart) {
+        $currSiteStart = $currContext->getOption('site_start');
+        $siteStart = $domain->get('sitestart');
+        $sameSiteStart = ($currSiteStart == $siteStart || empty($siteStart)) ? true : false;
 
-        // when not in same context, set a canonical placeholder
-        if ($sameContext || !$sameDomain) {
+        if (!$sameSiteStart) {
 
-            $url = $modx->makeUrl($sitestart, $currContext, '', 'full');
-            $modx->setPlaceholder('gateway.canonical', $url);
+            // when not in same context, set a canonical placeholder
+            if ($sameContext || !$sameDomain) {
+
+                $url = $modx->makeUrl($sitestart, $currContext, '', 'full');
+                $modx->setPlaceholder('gateway.canonical', $url);
+            }
+
+            // send to the new startpage
+            $modx->sendForward($siteStart);
         }
-
-        // send to the new startpage
-        $modx->sendForward($siteStart);
     }
 }

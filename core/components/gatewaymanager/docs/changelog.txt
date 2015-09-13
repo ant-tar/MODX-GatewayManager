@@ -2,7 +2,7 @@
 
 GatewayManager 1.2.0-pl (September 13th, 2015)
 ====================================
--
+- Fixed: [#13] Different start_site definitions in the context and gateway brakes the website
 - Added new feature to create the first Resource when not exists (when creating settings is enabled)
 - Updated creating new gateway entries to create context settings correctly
 - Updated UI to be more compatible with MODX 2.3+
