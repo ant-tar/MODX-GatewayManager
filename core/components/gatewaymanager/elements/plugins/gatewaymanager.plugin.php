@@ -22,7 +22,10 @@ if (!($gateway instanceof GatewayManager)) {
 $gateway->initialize($modx->context->get('key'));
 
 // get the hostname
-$hostname = parse_url($_SERVER['REQUEST_URI'], PHP_URL_HOST);
+$hostname = $_SERVER['HTTP_HOST'];
+if (empty($hostname)) {
+    $hostname = parse_url($_SERVER['REQUEST_URI'], PHP_URL_HOST);
+}
 if (empty($hostname)) {
     $hostname = $modx->getOption('http_host');
 }
