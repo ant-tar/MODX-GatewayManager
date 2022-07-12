@@ -16,7 +16,7 @@ GatewayManager.combo.ContextList = function(config) {
 		,autocomplete: true
 		,url: GatewayManager.config.connectorUrl
 		,baseParams: {
-            action: 'mgr/contexts/getList'
+            action: 'mgr/contexts/getlist'
 			,combo: true
         }
     });
@@ -46,7 +46,7 @@ GatewayManager.combo.ResourcesList = function(config) {
         ,queryParam: 'query'
         ,url: GatewayManager.config.connectorUrl
         ,baseParams: {
-            action: 'mgr/resources/getList'
+            action: 'mgr/resources/getlist'
             ,combo: true
         }
     });

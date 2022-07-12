@@ -5,8 +5,8 @@ GatewayManager.grid.Gateways = function(config) {
     Ext.applyIf(config, {
         id: 'gatewaymanager-grid-statuses'
 		,url: GatewayManager.config.connectorUrl
-		,baseParams: { action: 'mgr/gateways/getList' }
-		,save_action: 'mgr/gateways/updateFromGrid'
+		,baseParams: { action: 'mgr/gateways/getlist' }
+		,save_action: 'mgr/gateways/updatefromgrid'
 		,autosave: true
 
 		,fields: ['id','domain','context','sitestart','startpage','active']
